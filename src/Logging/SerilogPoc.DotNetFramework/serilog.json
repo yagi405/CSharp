@@ -1,0 +1,114 @@
+{
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.File" ],
+    "MinimumLevel": {
+      "Default": "Verbose"
+    },
+    "Enrich": [
+      "WithThreadId",
+      "WithThreadName",
+      "WithMachineName",
+      "WithEnvironmentUserName",
+      "WithProcessId",
+      "WithProcessName",
+      "WithAssemblyName",
+      "WithAssemblyVersion",
+      "WithExceptionDetails"
+    ],
+    "WriteTo": [
+      {
+        "Name": "Logger",
+        "Args": {
+          "configureLogger": {
+            "WriteTo": [
+              {
+                "Name": "File",
+                "Args": {
+                  "path": "Logs/all.log",
+                  "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss} | [{Level:u3}] | {ThreadId:00}:{ThreadName} | {ProcessId:00}:{ProcessName} | {Message:lj} | {AssemblyName} | {AssemblyVersion}  | {MachineName} | {EnvironmentUserName} | {NewLine}{Exception}",
+                  "rollingInterval": "Day",
+                  "retainedFileCountLimit": 7,
+                  "buffered": true
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Name": "Logger",
+        "Args": {
+          "configureLogger": {
+            "WriteTo": [
+              {
+                "Name": "File",
+                "Args": {
+                  "path": "Logs/all_compact.json",
+                  "formatter": "Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact",
+                  "rollingInterval": "Day",
+                  "retainedFileCountLimit": 7,
+                  "buffered": true
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Name": "Logger",
+        "Args": {
+          "configureLogger": {
+            "Filter": [
+              {
+                "Name": "ByIncludingOnly",
+                "Args": {
+                  "expression": "(@Level = 'Error' or @Level = 'Fatal' or @Level = 'Warning')"
+                }
+              }
+            ],
+            "WriteTo": [
+              {
+                "Name": "File",
+                "Args": {
+                  "path": "Logs/error.log",
+                  "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss} | [{Level:u3}] | {ThreadId:00}:{ThreadName} | {ProcessId:00}:{ProcessName} | {Message:lj} | {AssemblyName} | {AssemblyVersion}  | {MachineName} | {EnvironmentUserName} | {NewLine}{Exception} {Properties:j}",
+                  "rollingInterval": "Day",
+                  "retainedFileCountLimit": 7,
+                  "buffered": true
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Name": "Logger",
+        "Args": {
+          "configureLogger": {
+            "Filter": [
+              {
+                "Name": "ByIncludingOnly",
+                "Args": {
+                  "expression": "(@Level = 'Error' or @Level = 'Fatal' or @Level = 'Warning')"
+                }
+              }
+            ],
+            "WriteTo": [
+              {
+                "Name": "File",
+                "Args": {
+                  "path": "Logs/error_compact.json",
+                  "formatter": "Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact",
+                  "rollingInterval": "Day",
+                  "retainedFileCountLimit": 7,
+                  "buffered": true
+                }
+              }
+            ]
+          }
+        }
+      }
+
+    ]
+  }
+}
