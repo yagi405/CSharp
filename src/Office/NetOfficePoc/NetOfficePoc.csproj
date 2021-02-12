@@ -79,6 +79,7 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
@@ -93,16 +94,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccessSample.cs" />
-    <Compile Include="ExcelSample.cs" />
-    <Compile Include="OutlookSample.cs" />
-    <Compile Include="PowerPointSample.cs" />
+    <Compile Include="Access\AccessOperation.cs" />
+    <Compile Include="Access\AccessOperationContext.cs" />
+    <Compile Include="Access\SampleService.cs" />
+    <Compile Include="Db\DbCommandExtensions.cs" />
+    <Compile Include="Db\DbConnectionFactory.cs" />
+    <Compile Include="Db\AbstractDbService.cs" />
+    <Compile Include="Outlook\MailItemContext.cs" />
+    <Compile Include="Outlook\OutlookOperation.cs" />
+    <Compile Include="Outlook\OutlookOperationContext.cs" />
+    <Compile Include="PowerPoint\PowerPointOperation.cs" />
+    <Compile Include="PowerPoint\PowerPointOperationContext.cs" />
+    <Compile Include="Excel\ExcelOperation.cs" />
+    <Compile Include="Excel\ExcelOperationContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Excel\ExcelOperationArgs.cs" />
+    <Compile Include="Excel\ExcelOperationResult.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
