@@ -31,6 +31,30 @@ namespace NetOfficePoc.Excel
             return _context.OpenTemplateWorkbook(filePath);
         }
 
+        public void ProtectWorkSheet(Worksheet sheet, string password = null)
+        {
+            if (string.IsNullOrEmpty(password))
+            {
+                sheet.Protect();
+            }
+            else
+            {
+                sheet.Protect(password);
+            }
+        }
+
+        public void UnprotectWorkSheet(Worksheet sheet, string password = null)
+        {
+            if (string.IsNullOrEmpty(password))
+            {
+                sheet.Unprotect();
+            }
+            else
+            {
+                sheet.Unprotect(password);
+            }
+        }
+
         public void InitializeApplication(ExcelOperationContext context)
         {
             context.Application.Visible = false;

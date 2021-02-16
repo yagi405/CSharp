@@ -68,6 +68,9 @@ namespace NetOfficePoc
                 var chart = ((ChartObjects)destSheet.ChartObjects()).Add(70, 100, 375, 225);
                 chart.Chart.SetSourceData(destSheet.Range("$B2:$E6"));
 
+                //Protect
+                excelOperation.ProtectWorkSheet(destSheet,"password");
+
                 destBook.SaveAs(Path.Combine(Environment.CurrentDirectory, "dest.xlsx"));
             }
         }
@@ -81,6 +84,10 @@ namespace NetOfficePoc
                 var srcBook = excelOperation.OpenWorkBook("dest.xlsx");
                 var srcSheet = (Worksheet)srcBook.Worksheets.First();
                 var chart = (ChartObject)((ChartObjects)srcSheet.ChartObjects()).First();
+
+                //Unprotect
+                excelOperation.UnprotectWorkSheet(srcSheet, "password");
+                srcBook.Save();
 
                 //CopyChart
                 chart.CopyPicture();
