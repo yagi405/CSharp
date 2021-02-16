@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using NetOffice.ExcelApi;
 using NetOffice.ExcelApi.Enums;
+using NetOffice.OfficeApi.Enums;
+using NetOffice.PowerPointApi;
 using NetOffice.PowerPointApi.Enums;
 using NetOfficePoc.Access;
 using NetOfficePoc.Db;
@@ -69,7 +71,7 @@ namespace NetOfficePoc
                 chart.Chart.SetSourceData(destSheet.Range("$B2:$E6"));
 
                 //Protect
-                excelOperation.ProtectWorkSheet(destSheet,"password");
+                excelOperation.ProtectWorkSheet(destSheet, "password");
 
                 destBook.SaveAs(Path.Combine(Environment.CurrentDirectory, "dest.xlsx"));
             }
@@ -96,7 +98,39 @@ namespace NetOfficePoc
                 var presentation = powerPointOperation.NewPresentation();
                 var slide = presentation.Slides.Add(1, PpSlideLayout.ppLayoutClipArtAndVerticalText);
                 slide.Shapes.Paste();
-                presentation.SaveAs(Path.Combine(Environment.CurrentDirectory, "sample.pptx"));
+
+                foreach (var shape in slide.Shapes)
+                {
+                    if (shape.HasTextFrame != MsoTriState.msoTrue)
+                    {
+                        continue;
+                    }
+                    shape.TextFrame.TextRange.Text = "**TIME";
+                    break;
+                }
+                presentation.SaveAs(Path.Combine(Environment.CurrentDirectory, "src.pptx"));
+            }
+
+            using (var powerPointOperation = new PowerPointOperation())
+            {
+                var presentation = powerPointOperation
+                    .OpenTemplatePresentation(Path.Combine(Environment.CurrentDirectory, "src.pptx"));
+
+                var slide = (Slide)presentation.Slides.First();
+
+                foreach (var shape in slide.Shapes)
+                {
+                    if (shape.HasTextFrame != MsoTriState.msoTrue)
+                    {
+                        continue;
+                    }
+
+                    shape.TextFrame.TextRange.Text = 
+                        shape.TextFrame.TextRange.Text == "**TIME" 
+                            ? DateTime.Now.ToLongTimeString() 
+                            : "Hello World!";
+                }
+                presentation.SaveAs(Path.Combine(Environment.CurrentDirectory, "dest.pptx"));
             }
         }
 
