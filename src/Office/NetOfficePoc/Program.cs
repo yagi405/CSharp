@@ -125,12 +125,28 @@ namespace NetOfficePoc
                         continue;
                     }
 
-                    shape.TextFrame.TextRange.Text = 
-                        shape.TextFrame.TextRange.Text == "**TIME" 
-                            ? DateTime.Now.ToLongTimeString() 
+                    shape.TextFrame.TextRange.Text =
+                        shape.TextFrame.TextRange.Text == "**TIME"
+                            ? DateTime.Now.ToLongTimeString()
                             : "Hello World!";
                 }
+
+                presentation.Slides.Add(2, PpSlideLayout.ppLayoutBlank);
+                presentation.Slides.Add(3, PpSlideLayout.ppLayoutText);
+
                 presentation.SaveAs(Path.Combine(Environment.CurrentDirectory, "dest.pptx"));
+            }
+
+            using (var powerPointOperation = new PowerPointOperation())
+            {
+                var mergedPresentation = powerPointOperation.MergePresentations(
+                    new[]
+                    {
+                        Path.Combine(Environment.CurrentDirectory, "src.pptx"),
+                        Path.Combine(Environment.CurrentDirectory, "dest.pptx")
+                    });
+
+                mergedPresentation.SaveAs(Path.Combine(Environment.CurrentDirectory, "merged.pptx"));
             }
         }
 

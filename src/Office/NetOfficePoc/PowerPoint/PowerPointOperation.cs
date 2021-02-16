@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using NetOffice.PowerPointApi;
 
 namespace NetOfficePoc.PowerPoint
@@ -25,6 +27,17 @@ namespace NetOfficePoc.PowerPoint
         public Presentation OpenTemplatePresentation(string filePath)
         {
             return _context.OpenTemplatePresentation(filePath);
+        }
+
+        public Presentation MergePresentations(IEnumerable<string> srcFilePath)
+        {
+            var mergedPresentation = NewPresentation();
+
+            foreach (var filePath in srcFilePath.Reverse())
+            {
+                mergedPresentation.Slides.InsertFromFile(filePath, 0);
+            }
+            return mergedPresentation;
         }
 
         protected virtual void Dispose(bool disposing)
