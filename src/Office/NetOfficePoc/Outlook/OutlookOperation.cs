@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using NetOffice.OutlookApi;
 using NetOffice.OutlookApi.Enums;
@@ -18,7 +17,7 @@ namespace NetOfficePoc.Outlook
             _context = new OutlookOperationContext();
         }
 
-        public void CreateMailItemAsDraft(MailItemContext mailItemContext)
+        public MailItem CreateMailItem(MailItemContext mailItemContext)
         {
             var item = (MailItem)_context.Application.CreateItem(OlItemType.olMailItem);
             foreach (var recipient in mailItemContext.Recipients)
@@ -28,7 +27,13 @@ namespace NetOfficePoc.Outlook
             item.CC = string.Join(";", mailItemContext.Cc);
             item.Subject = mailItemContext.Subject;
             item.Body = mailItemContext.Body;
-            item.Save();
+            return item;
+        }
+
+        public MailItem CreateMailItemFromTemplate(string templateFilePath)
+        {
+            var item = (MailItem)_context.Application.CreateItemFromTemplate(templateFilePath);
+            return item;
         }
 
         public IEnumerable<MAPIFolder> EnumerateFolders(MAPIFolder folder)
@@ -58,23 +63,7 @@ namespace NetOfficePoc.Outlook
 
         public IEnumerable<MailItem> EnumerateInboxMailItems()
         {
-            var inbox = GetInboxFolder();
-            return inbox.Items.OfType<MailItem>();
-        }
-
-
-        public void SaveItem(MailItem mailItem)
-        {
-            mailItem.SaveAs(Path.Combine(Environment.CurrentDirectory, $@"{mailItem.Subject}.msg"));
-        }
-
-        public void SaveAttachments(MailItem mailItem)
-        {
-            var attachments = mailItem.Attachments;
-            foreach (var attachment in attachments)
-            {
-                attachment.SaveAsFile(Path.Combine(Environment.CurrentDirectory, $@"{attachment.FileName}"));
-            }
+            return EnumerateMailItems(GetInboxFolder());
         }
 
         public MAPIFolder GetInboxFolder()

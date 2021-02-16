@@ -155,7 +155,7 @@ namespace NetOfficePoc
             using (var outlookOperation = new OutlookOperation())
             {
                 //CreateMailItemAsDraft
-                outlookOperation.CreateMailItemAsDraft(
+                var draftMailItem = outlookOperation.CreateMailItem(
                     new MailItemContext
                     {
                         Recipients = new List<string> { "SampleRecipient" },
@@ -164,6 +164,8 @@ namespace NetOfficePoc
                         Body = "SampleBody",
                     }
                     );
+
+                draftMailItem.Save();
 
                 //PrintFolders
                 var root = outlookOperation.GetRootFolder();
@@ -179,18 +181,43 @@ namespace NetOfficePoc
                     Console.WriteLine(mailItem.Subject);
                 }
 
-                //SaveItem
-                if (mailItems.Any())
+                var itemWithAttachments = mailItems.FirstOrDefault(x => x.Attachments.Any());
+                if (itemWithAttachments == null)
                 {
-                    outlookOperation.SaveItem(mailItems.First());
+                    return;
                 }
 
+                //SaveItem
+                var filePath = Path.Combine(Environment.CurrentDirectory, "sample.msg");
+                itemWithAttachments.SaveAs(filePath);
+
                 //SaveAttachments
-                var itemWithAttachments = mailItems.FirstOrDefault(x => x.Attachments.Any());
-                if (itemWithAttachments != null)
+                var attachments = itemWithAttachments.Attachments;
+                foreach (var attachment in attachments)
                 {
-                    outlookOperation.SaveAttachments(itemWithAttachments);
+                    attachment.SaveAsFile(Path.Combine(Environment.CurrentDirectory, $@"{attachment.FileName}"));
                 }
+
+                //CreateMailItemAsDraft FromTemplate
+                var draftMailItemFromTemplate = outlookOperation.CreateMailItemFromTemplate(filePath);
+
+                var recipientsCount = draftMailItemFromTemplate.Recipients.Count;
+                for (var i = 0; i < recipientsCount; i++)
+                {
+                    draftMailItemFromTemplate.Recipients.Remove(1);
+                }
+                draftMailItemFromTemplate.CC = "";
+
+                var attachmentsCount = draftMailItemFromTemplate.Attachments.Count;
+                for (var i = 0; i < attachmentsCount; i++)
+                {
+                    draftMailItemFromTemplate.Attachments.Remove(1);
+                }
+
+                //AddAttachment
+                draftMailItemFromTemplate.Attachments.Add(Path.Combine(Environment.CurrentDirectory, "merged.pptx"));
+
+                draftMailItemFromTemplate.Save();
             }
         }
 
