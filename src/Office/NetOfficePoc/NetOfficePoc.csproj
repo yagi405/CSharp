@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Access\AccessOperation.cs" />
     <Compile Include="Access\AccessOperationContext.cs" />
+    <Compile Include="Access\Sample.cs" />
     <Compile Include="Access\SampleService.cs" />
     <Compile Include="Db\DbCommandExtensions.cs" />
     <Compile Include="Db\DbConnectionFactory.cs" />

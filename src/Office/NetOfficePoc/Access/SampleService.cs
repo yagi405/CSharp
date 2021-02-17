@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Common;
 using NetOfficePoc.Db;
 
@@ -19,6 +20,54 @@ namespace NetOfficePoc.Access
                 cmd.CommandText = "CREATE TABLE NetOfficeTable(Column1 Text, Column2 Text)";
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public List<Sample> GetAll()
+        {
+            var results = new List<Sample>();
+            using (GetConnection(out var conn))
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = @"
+SELECT
+    *
+FROM
+    NetOfficeTable
+";
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        results.Add(new Sample(reader["Column1"].ToString(), reader["Column2"].ToString()));
+                    }
+                }
+            }
+            return results;
+        }
+
+        public Sample GetById(string id)
+        {
+            using (GetConnection(out var conn))
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = @"
+SELECT
+    *
+FROM
+    NetOfficeTable
+WHERE
+    Column1 = @id
+";
+                cmd.AddParameter("@id", id);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        return new Sample(reader["Column1"].ToString(), reader["Column2"].ToString());
+                    }
+                }
+            }
+            return null;
         }
 
         public void AddSampleData()

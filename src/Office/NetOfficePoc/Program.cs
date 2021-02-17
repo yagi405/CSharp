@@ -239,6 +239,24 @@ namespace NetOfficePoc
                 service.AddSampleData();
             }
 
+            using (var conn = DbConnectionFactory.Default.CreateConnection())
+            {
+                var service = new SampleService(conn);
+
+                //GetAll
+                var records = service.GetAll();
+                foreach (var r in records)
+                {
+                    Console.WriteLine(string.Join(" - ", r.Column1, r.Column2));
+                }
+
+                Console.WriteLine("===============================");
+
+                //GetById
+                var record = service.GetById("2");
+                Console.WriteLine(string.Join(" - ", record.Column1, record.Column2));
+            }
+
             //using (var conn = DbConnectionFactory.Default.CreateConnection())
             //using (var tran = conn.BeginTransaction())
             //{
