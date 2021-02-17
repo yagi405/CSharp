@@ -63,6 +63,9 @@ namespace NetOfficePoc
                 var destBook = excelOperation.NewWorkbook();
                 var destSheet = (Worksheet)destBook.Worksheets.First();
 
+                //RenameSheet
+                destSheet.Name = "dest";
+
                 //CopyRange
                 srcSheet.Range("$B2:$E6").Copy(destSheet.Range("B2"));
 
