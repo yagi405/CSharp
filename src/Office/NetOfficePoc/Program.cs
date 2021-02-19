@@ -221,6 +221,14 @@ namespace NetOfficePoc
                 draftMailItemFromTemplate.Attachments.Add(Path.Combine(Environment.CurrentDirectory, "merged.pptx"));
 
                 draftMailItemFromTemplate.Save();
+
+                //FindBySubjectAndBody
+                mailItems.Clear();
+                mailItems = outlookOperation.EnumerateMailItems(outlookOperation.GetInboxFolder(), "ベネ・ステ", "ベネ・ステ").ToList();
+                foreach (var mailItem in mailItems)
+                {
+                    Console.WriteLine(mailItem.Subject);
+                }
             }
         }
 
