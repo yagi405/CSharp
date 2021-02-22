@@ -134,7 +134,16 @@ namespace NetOfficePoc
                             : "Hello World!";
                 }
 
-                presentation.Slides.Add(2, PpSlideLayout.ppLayoutBlank);
+                var slide2 = presentation.Slides.Add(2, PpSlideLayout.ppLayoutBlank);
+
+                //AddShape
+                var rectangle = slide2.Shapes.AddShape(MsoAutoShapeType.msoShapeRectangle, 144, 144, 72, 72);
+                rectangle.TextFrame.TextRange.Text = "text";
+                rectangle.Name = "Red Square";
+                //.NETはRGB、InteropではBGRで色を扱う(例えば .NETの青は、PowerPointでは赤として認識される）
+                rectangle.Fill.ForeColor.RGB = Color.Blue.ToArgb();
+                rectangle.Line.DashStyle = MsoLineDashStyle.msoLineDashDot;
+
                 presentation.Slides.Add(3, PpSlideLayout.ppLayoutText);
 
                 presentation.SaveAs(Path.Combine(Environment.CurrentDirectory, "dest.pptx"));
