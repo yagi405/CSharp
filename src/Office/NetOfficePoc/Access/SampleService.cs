@@ -11,23 +11,32 @@ namespace NetOfficePoc.Access
 
         public SampleService(DbConnection connection) : base(connection) { }
 
-        public void CreateTable()
+        public void CreateTable(DbTransaction tran = null)
         {
             using (GetConnection(out var conn))
             using (var cmd = conn.CreateCommand())
             {
+                if (tran != null)
+                {
+                    cmd.Transaction = tran;
+                }
 
                 cmd.CommandText = "CREATE TABLE NetOfficeTable(Column1 Text, Column2 Text)";
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public List<Sample> GetAll()
+        public List<Sample> GetAll(DbTransaction tran = null)
         {
             var results = new List<Sample>();
             using (GetConnection(out var conn))
             using (var cmd = conn.CreateCommand())
             {
+                if (tran != null)
+                {
+                    cmd.Transaction = tran;
+                }
+
                 cmd.CommandText = @"
 SELECT
     *
@@ -70,11 +79,16 @@ WHERE
             return null;
         }
 
-        public void AddSampleData()
+        public void AddSampleData(DbTransaction tran = null)
         {
             using (GetConnection(out var conn))
             using (var cmd = conn.CreateCommand())
             {
+                if (tran != null)
+                {
+                    cmd.Transaction = tran;
+                }
+
                 for (var i = 0; i < 100; i++)
                 {
                     cmd.CommandText = $"INSERT INTO NetOfficeTable(Column1, Column2) VALUES(\"{i}\", \"{DateTime.Now.ToShortTimeString()}\")";

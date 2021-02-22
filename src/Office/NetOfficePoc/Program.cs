@@ -20,12 +20,12 @@ namespace NetOfficePoc
     {
         private static void Main()
         {
-            Console.WriteLine("Excel");
-            ExcelSample();
-            Console.WriteLine("PowerPoint");
-            PowerPointSample();
-            Console.WriteLine("Outlook");
-            OutlookSample();
+            //Console.WriteLine("Excel");
+            //ExcelSample();
+            //Console.WriteLine("PowerPoint");
+            //PowerPointSample();
+            //Console.WriteLine("Outlook");
+            //OutlookSample();
             Console.WriteLine("Access");
             AccessSample();
             Console.WriteLine("done!");
@@ -251,12 +251,23 @@ namespace NetOfficePoc
             }
 
             using (var conn = DbConnectionFactory.Default.CreateConnection())
+            using (var tran = conn.BeginTransaction())
             {
-                var service = new SampleService(conn);
-                //CreateDatabase
-                service.CreateTable();
-                //AddSampleData
-                service.AddSampleData();
+                try
+                {
+                    var service = new SampleService(conn);
+                    //CreateDatabase
+                    service.CreateTable(tran);
+                    //AddSampleData
+                    service.AddSampleData(tran);
+
+                    tran.Commit();
+                }
+                catch (Exception)
+                {
+                    tran.Rollback();
+                    throw;
+                }
             }
 
             using (var conn = DbConnectionFactory.Default.CreateConnection())
@@ -276,25 +287,6 @@ namespace NetOfficePoc
                 var record = service.GetById("2");
                 Console.WriteLine(string.Join(" - ", record.Column1, record.Column2));
             }
-
-            //using (var conn = DbConnectionFactory.Default.CreateConnection())
-            //using (var tran = conn.BeginTransaction())
-            //{
-            //    try
-            //    {
-            //        var service = new SampleService(conn);
-
-            //        service.CreateTable();
-            //        service.AddSampleData();
-            //        tran.Commit();
-            //    }
-            //    catch (Exception)
-            //    {
-            //        tran.Rollback();
-            //        throw;
-            //    }
-            //}
-
         }
 
     }
