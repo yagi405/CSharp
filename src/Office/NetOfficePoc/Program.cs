@@ -20,12 +20,12 @@ namespace NetOfficePoc
     {
         private static void Main()
         {
-            //Console.WriteLine("Excel");
-            //ExcelSample();
-            //Console.WriteLine("PowerPoint");
-            //PowerPointSample();
-            //Console.WriteLine("Outlook");
-            //OutlookSample();
+            Console.WriteLine("Excel");
+            ExcelSample();
+            Console.WriteLine("PowerPoint");
+            PowerPointSample();
+            Console.WriteLine("Outlook");
+            OutlookSample();
             Console.WriteLine("Access");
             AccessSample();
             Console.WriteLine("done!");
