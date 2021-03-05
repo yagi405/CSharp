@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Anotar.Serilog;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 
@@ -54,10 +55,10 @@ namespace SerilogPoc.DotNetFramework
 
         private static void SampleMethod()
         {
-            Log.Debug("Hello World!");
+            LogTo.Debug("Hello World!");
 
             var p = new Person() { Name = "Saito", Age = 29 };
-            Log.Information("p => {@saito}", p);
+            LogTo.Information("p => {@saito}", p);
 
             // ReSharper disable once ConvertToConstant.Local
             var a = 10;
@@ -65,13 +66,13 @@ namespace SerilogPoc.DotNetFramework
             var b = 0;
             try
             {
-                Log.Debug($"Dividing {a} by {b}");
+                LogTo.Debug($"Dividing {a} by {b}");
                 // ReSharper disable once IntDivisionByZero
                 Console.WriteLine(a / b);
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Something went wrong");
+                LogTo.Error(ex, "Something went wrong");
             }
             finally
             {

@@ -31,7 +31,7 @@
                   //ログファイルパス
                   "path": "Logs/All/Default/all.log",
                   //ログファイルのフォーマット
-                  "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss} | [{Level:u3}] | {ThreadId:00}:{ThreadName} | {ProcessId:00}:{ProcessName} | {Message:lj} | {AssemblyName} | {AssemblyVersion} | {MachineName} | {EnvironmentUserName} | {MemoryUsage} B | {NewLine}{Exception}",
+                  "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss} | [{Level:u3}] | {ThreadId:00}:{ThreadName} | {ProcessId:00}:{ProcessName} | {Message:lj} | {SourceContext} | {MethodName} | {LineNumber} L | {AssemblyName} | {AssemblyVersion} | {MachineName} | {EnvironmentUserName} | {MemoryUsage} B | {NewLine}{Exception}",
                   //1日毎にロールする
                   "rollingInterval": "Day",
                   //直近の7ファイルを保持する（デフォルトでは直近の31ファイル）
@@ -86,7 +86,7 @@
                 "Name": "File",
                 "Args": {
                   "path": "Logs/Error/Default/error.log",
-                  "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss} | [{Level:u3}] | {ThreadId:00}:{ThreadName} | {ProcessId:00}:{ProcessName} | {Message:lj} | {AssemblyName} | {AssemblyVersion} | {MachineName} | {EnvironmentUserName} | {MemoryUsage} B | {NewLine}{Exception}",
+                  "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss} | [{Level:u3}] | {ThreadId:00}:{ThreadName} | {ProcessId:00}:{ProcessName} | {Message:lj} | {SourceContext} | {MethodName} | {LineNumber} L | {AssemblyName} | {AssemblyVersion} | {MachineName} | {EnvironmentUserName} | {MemoryUsage} B | {NewLine}{Exception}",
                   "rollingInterval": "Day",
                   "retainedFileCountLimit": 7,
                   "fileSizeLimitBytes": null,
