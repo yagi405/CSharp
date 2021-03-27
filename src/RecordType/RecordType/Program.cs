@@ -21,21 +21,21 @@ namespace RecordType
     //    public override int GetHashCode() => HashCode.Combine(X, Y);
     //}
 
-    public record Point2D(int X, int Y)
-    {
-        public int Property { get; }
+    public record Point2D(int X, int Y);
+    //{
+    //    public int Property { get; }
 
-        public Point2D(int x, int y, int property) 
-            : this(x, y)
-        {
-            Property = property;
-        }
+    //    public Point2D(int x, int y, int property)
+    //        : this(x, y)
+    //    {
+    //        Property = property;
+    //    }
 
-        public void Method()
-        {
-            Console.WriteLine("foo");
-        }
-    }
+    //    public void Method()
+    //    {
+    //        Console.WriteLine("foo");
+    //    }
+    //}
 
     public class Program
     {
@@ -52,7 +52,11 @@ namespace RecordType
             Console.WriteLine($"a.Equals(p2)：{src.Equals(p2)}"); // True
 
             //ToStringもオーバーライドされている
-            Console.WriteLine(src.ToString()); //Point2D { X = 10, Y = 20 }
+            Console.WriteLine(src); //Point2D { X = 10, Y = 20 }
+
+            var copy = src with { X = 30, Y = 60 };
+            Console.WriteLine(copy);
+            Console.WriteLine(src);
         }
     }
 }
