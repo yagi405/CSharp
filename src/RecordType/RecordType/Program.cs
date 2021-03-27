@@ -21,7 +21,21 @@ namespace RecordType
     //    public override int GetHashCode() => HashCode.Combine(X, Y);
     //}
 
-    public record Point2D(int X, int Y);
+    public record Point2D(int X, int Y)
+    {
+        public int Property { get; }
+
+        public Point2D(int x, int y, int property) 
+            : this(x, y)
+        {
+            Property = property;
+        }
+
+        public void Method()
+        {
+            Console.WriteLine("foo");
+        }
+    }
 
     public class Program
     {
