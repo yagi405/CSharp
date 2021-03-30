@@ -13,6 +13,7 @@ using NetOfficePoc.Db;
 using NetOfficePoc.Excel;
 using NetOfficePoc.Outlook;
 using NetOfficePoc.PowerPoint;
+using NetOfficePoc.Word;
 
 namespace NetOfficePoc
 {
@@ -28,6 +29,8 @@ namespace NetOfficePoc
             OutlookSample();
             Console.WriteLine("Access");
             AccessSample();
+            Console.WriteLine("Word");
+            WordSample();
             Console.WriteLine("done!");
             Console.ReadKey();
         }
@@ -289,5 +292,17 @@ namespace NetOfficePoc
             }
         }
 
+        private static void WordSample()
+        {
+            using (var wordOperation = new WordOperation())
+            {
+                var document = wordOperation.OpenDocument("アンケート_国内向け.docx");
+
+                var yes = document.SelectContentControlsByTitle("yes-1").FirstOrDefault();
+                Console.WriteLine($"yes-1 => {yes?.Checked}");
+                var no = document.SelectContentControlsByTag("no-1").FirstOrDefault();
+                Console.WriteLine($"no-1 => {no?.Checked}");
+            }
+        }
     }
 }
