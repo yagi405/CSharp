@@ -50,7 +50,8 @@ namespace Algorithm.BubbleSort
 
                 for (var j = 1; j < values.Length - i; j++)
                 {
-                    if (values[j] != values[j - 1] && (values[j] < values[j - 1] ^ desc))
+                    if (values[j] != values[j - 1] && 
+                        values[j] < values[j - 1] ^ desc)
                     {
                         Swap(ref values[j], ref values[j - 1]);
                         swapped = true;
