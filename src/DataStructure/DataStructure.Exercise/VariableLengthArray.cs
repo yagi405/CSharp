@@ -43,7 +43,7 @@
                 return;
             }
 
-            for (int i = 0; i < values.Length; i++)
+            for (var i = 0; i < values.Length; i++)
             {
                 Add(values[i]);
             }
@@ -54,7 +54,7 @@
             RaiseErrorIfIndexOutOfRange(index);
             EnsureCapacity();
 
-            for (int i = Count; i > index; i--)
+            for (var i = Count; i > index; i--)
             {
                 _items[i] = _items[i - 1];
             }
@@ -77,7 +77,7 @@
         {
             RaiseErrorIfIndexOutOfRange(index);
 
-            for (int i = index; i < _items.Length - 1; i++)
+            for (var i = index; i < _items.Length - 1; i++)
             {
                 _items[i] = _items[i + 1];
             }
@@ -120,7 +120,7 @@
             }
 
             var items = new int[capacity * 2];
-            for (int i = 0; i < _items.Length; i++)
+            for (var i = 0; i < _items.Length; i++)
             {
                 items[i] = _items[i];
             }
