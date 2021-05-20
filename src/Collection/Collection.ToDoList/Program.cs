@@ -70,9 +70,6 @@ ToDoリストを終了する場合は   **Exit");
 
                     case "**Exit":
                         return;
-
-                    default:
-                        break;
                 }
 
                 toDoList.Add(toDo);
