@@ -20,73 +20,84 @@ namespace Collection.ToDoList
 ToDoリストを終了する場合は   **Exit");
 
                 var toDo = GetCommand();
+
                 switch (toDo)
                 {
                     case "":
                         Console.WriteLine("ToDoを入力してください。");
-                        continue;
+                        break;
 
                     case "**Show":
-                        ShowToDo(toDoList);
-                        continue;
+
+                        if (toDoList.Count == 0)
+                        {
+                            Console.WriteLine("登録されているToDoがありません。");
+                            break;
+                        }
+                        ShowToDoList(toDoList);
+                        break;
 
                     case "**Delete":
 
                         if (toDoList.Count == 0)
                         {
-                            Console.WriteLine("現在登録されているToDoはありません。");
-                            continue;
+                            Console.WriteLine("登録されているToDoがありません。");
+                            break;
                         }
-
-                        do
-                        {
-                            ShowReadMe($@"削除するToDoのNoを入力してください。（No.1 - No.{toDoList.Count}）
-削除を終了する場合は空文字を入力してください。");
-
-                            var input = GetCommand();
-
-                            if (input == "")
-                            {
-                                break;
-                            }
-
-                            if (!int.TryParse(input, out var no))
-                            {
-                                Console.WriteLine("Noは数値で入力してください。");
-                                continue;
-                            }
-
-                            if (no < 0 || toDoList.Count < no)
-                            {
-                                Console.WriteLine($"No.{no}のToDoは登録されておりません。");
-                                continue;
-                            }
-
-                            toDoList.RemoveAt(no - 1);
-                            Console.WriteLine($"No.{no}のToDoを削除しました。");
-
-                        } while (0 < toDoList.Count);
-                        continue;
+                        DeleteToDoList(toDoList);
+                        break;
 
                     case "**Exit":
                         return;
-                }
 
-                toDoList.Add(toDo);
-                Console.WriteLine($"ToDo（No.{toDoList.Count}）を登録しました。");
+                    default:
+                        toDoList.Add(toDo);
+                        Console.WriteLine($"ToDo（No.{toDoList.Count}）を登録しました。");
+                        break;
+                }
             }
         }
 
-        private static void ShowToDo(List<string> toDoList)
+        private static void DeleteToDoList(List<string> toDoList)
         {
             if (toDoList == null)
             {
                 return;
             }
 
-            if (toDoList.Count == 0)
+            do
             {
-                Console.WriteLine("現在登録されているToDoはありません。");
+                ShowReadMe($@"削除するToDoのNoを入力してください。（No.1 - No.{toDoList.Count}）
+削除を終了する場合は空文字を入力してください。");
+
+                var input = GetCommand();
+                if (input == "")
+                {
+                    break;
+                }
+
+                if (!int.TryParse(input, out var number))
+                {
+                    Console.WriteLine("Noは数値で入力してください。");
+                    continue;
+                }
+
+                if (number < 1 || toDoList.Count < number)
+                {
+                    Console.WriteLine($"No.{number}のToDoは登録されておりません。");
+                    continue;
+                }
+
+                toDoList.RemoveAt(number - 1);
+                Console.WriteLine($"No.{number}のToDoを削除しました。");
+
+            } while (0 < toDoList.Count);
+        }
+
+        private static void ShowToDoList(List<string> toDoList)
+        {
+            if (toDoList == null)
+            {
                 return;
             }
 
@@ -100,12 +111,12 @@ ToDoリストを終了する場合は   **Exit");
                 line += "-";
             }
 
-            //{0,{width}}|{1}
             var format = $"{{0,{width}}}|{{1}}";
 
             Console.WriteLine();
             Console.WriteLine(format, "No", "ToDo");
             Console.WriteLine($"{line}+----------------------------------------------------");
+
             var i = 1;
             foreach (var toDo in toDoList)
             {
