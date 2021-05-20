@@ -52,7 +52,7 @@ ToDoリストを終了する場合は   **Exit");
 
                             if (!int.TryParse(input, out var no))
                             {
-                                Console.WriteLine($"Noは数値で入力してください。");
+                                Console.WriteLine("Noは数値で入力してください。");
                                 continue;
                             }
 
