@@ -8,13 +8,6 @@
 
         public int Count { get; private set; }
 
-        public VariableLengthArray() : this(DefaultCapacity) { }
-
-        public VariableLengthArray(int capacity)
-        {
-            _items = new int[capacity];
-        }
-
         public int this[int index]
         {
             get
@@ -27,6 +20,13 @@
                 RaiseErrorIfIndexOutOfRange(index);
                 _items[index] = value;
             }
+        }
+
+        public VariableLengthArray() : this(DefaultCapacity) { }
+
+        public VariableLengthArray(int capacity)
+        {
+            _items = new int[capacity];
         }
 
         public void Add(int value)
@@ -43,7 +43,7 @@
                 return;
             }
 
-            for (var i = 0; i < values.Length; i++)
+            for (var i = 0; i < Count; i++)
             {
                 Add(values[i]);
             }
@@ -54,7 +54,7 @@
             RaiseErrorIfIndexOutOfRange(index);
             EnsureCapacity();
 
-            for (var i = Count; i > index; i--)
+            for (var i = Count; index < i; i--)
             {
                 _items[i] = _items[i - 1];
             }
@@ -110,7 +110,7 @@
         private void Grow()
         {
             int capacity;
-            if (_items.Length > DefaultCapacity)
+            if (DefaultCapacity < _items.Length)
             {
                 capacity = _items.Length;
             }
