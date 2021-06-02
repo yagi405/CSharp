@@ -13,7 +13,7 @@ namespace CS35.AddressBook.Commands.Imp
 
             Console.WriteLine();
             //必要な幅を厳密に計算していない
-            var format = "{0,3} {1,-16} {2,3} {3,-14} {4}";
+            const string format = "{0,3} {1,-16} {2,3} {3,-14} {4}";
             Console.WriteLine(format, "No.", nameof(AddressInfo.Name), nameof(AddressInfo.Age), nameof(AddressInfo.TelNo), nameof(AddressInfo.Address));
             var i = 1;
             foreach (var address in addressBook)
