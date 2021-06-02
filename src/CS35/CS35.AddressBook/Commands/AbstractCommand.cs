@@ -19,8 +19,7 @@ namespace CS35.AddressBook.Commands
         /// <summary>
         /// 本クラスの管理下にあるすべてのコマンドです。
         /// </summary>
-        private static readonly AbstractCommand[] _allCommands = new AbstractCommand[]
-        {
+        private static readonly AbstractCommand[] _allCommands = {
             new Add(),
             new List(),
             new Exit(),

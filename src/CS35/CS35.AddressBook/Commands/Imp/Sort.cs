@@ -22,8 +22,7 @@ namespace CS35.AddressBook.Commands.Imp
         /// <summary>
         /// 公開するSorterです。
         /// </summary>
-        private static readonly Sorter[] _availableSorters = new Sorter[]
-        {
+        private static readonly Sorter[] _availableSorters = {
             new(nameof(AddressInfo.Name).ToLowerInvariant(),
                 x => x.OrderBy(info => info.Name),
                 x => x.OrderByDescending(info => info.Name)),
