@@ -32,7 +32,7 @@ namespace CS35.AddressBook.Commands.Imp
             var filePath = !string.IsNullOrEmpty(parameters[0]) ? parameters[0]
                 : throw new CommandException("読み込み先のファイルパスを入力してください。");
 
-           StringUtil.RemoveStartEndDoubleQuotes(ref filePath);
+            StringUtil.RemoveStartEndDoubleQuotes(ref filePath);
 
             try
             {
@@ -80,6 +80,10 @@ namespace CS35.AddressBook.Commands.Imp
             catch (IOException ex)
             {
                 throw new CommandException("指定されたファイルを読み込むことができません。", ex);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                throw new CommandException("指定されたファイルへのアクセスが許可されておりません。", ex);
             }
         }
 

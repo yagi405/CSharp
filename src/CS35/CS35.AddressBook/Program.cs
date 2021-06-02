@@ -21,6 +21,7 @@ namespace CS35.AddressBook
                 {
                     try
                     {
+                        Console.WriteLine();
                         Console.Write("> ");
                         var line = Console.ReadLine();
                         var inputs = line.Split(' ', '　');
@@ -44,10 +45,11 @@ namespace CS35.AddressBook
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 Console.WriteLine("予期せぬエラーが発生しました。");
                 Console.WriteLine("住所録アプリケーションを終了します。");
+                Console.WriteLine(ex);
                 Environment.Exit(1);
             }
         }
