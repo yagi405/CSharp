@@ -67,9 +67,12 @@ namespace CS35.AddressBook.Commands.Imp
             var sorter = _sorterIndex.GetValueOrDefault(itemName) ??
                 throw new CommandException($"{itemName}はソート対象の項目名として定義されておりません。");
 
-            var sortType = parameters.Length == 1 || string.IsNullOrEmpty(parameters[1]) ? AscKeyword
+            var sortType = parameters.Length == 1 || string.IsNullOrEmpty(parameters[1]) 
+                ? AscKeyword
                 : parameters[1];
 
+            //switch式
+            //https://docs.microsoft.com/ja-jp/dotnet/csharp/language-reference/operators/switch-expression
             addressBook = sortType switch
             {
                 AscKeyword => sorter.OrderBy(addressBook).ToList(),

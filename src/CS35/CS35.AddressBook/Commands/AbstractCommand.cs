@@ -63,6 +63,12 @@ namespace CS35.AddressBook.Commands
         /// <returns>コマンドの実体</returns>
         public static AbstractCommand CreateCommand(string command)
         {
+            //string.IsNullOrEmpty
+            //https://docs.microsoft.com/ja-jp/dotnet/api/system.string.isnullorempty?view=net-5.0
+
+            //string.StartsWith
+            //https://docs.microsoft.com/ja-jp/dotnet/api/system.string.startswith?view=net-5.0
+
             if (string.IsNullOrEmpty(command) || !command.StartsWith(CommandPrefix))
             {
                 return null;
@@ -86,6 +92,8 @@ namespace CS35.AddressBook.Commands
         /// <summary>
         /// コマンドの名称を取得します。
         /// </summary>
+        /// 式形式のメンバー
+        /// https://docs.microsoft.com/ja-jp/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members
         public virtual string Name => GetType().Name.ToLowerInvariant();
 
         /// <summary>

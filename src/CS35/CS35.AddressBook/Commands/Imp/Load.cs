@@ -3,6 +3,7 @@ using CS35.AddressBook.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace CS35.AddressBook.Commands.Imp
 {
@@ -62,7 +63,7 @@ namespace CS35.AddressBook.Commands.Imp
                     //tempAddressBook = File
                     //    .ReadLines(filePath)
                     //    .Where(x => !string.IsNullOrEmpty(x))
-                    //    .Select(x => Add.CreateAddressInfo(line.Split(new char[] { ' ' })))
+                    //    .Select(x => Add.CreateAddressInfo(x.Split(new[] { ' ' })))
                     //    .ToList();
 
                     addressBook = tempAddressBook;

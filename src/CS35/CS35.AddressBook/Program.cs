@@ -6,9 +6,15 @@ using System.Linq;
 
 namespace CS35.AddressBook
 {
+    /// <summary>
+    /// 住所録アプリケーションのエントリーポイントを定義するクラスです。
+    /// </summary>
     internal class Program
     {
-        private static void Main(string[] args)
+        /// <summary>
+        /// 住所録アプリケーションのエントリーポイントです。
+        /// </summary>
+        private static void Main()
         {
             try
             {

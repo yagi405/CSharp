@@ -30,7 +30,7 @@ namespace CS35.AddressBook.Commands
             : base(message, innerException) { }
 
         /// <summary>
-        /// シリアル化したデータを使用して、System.Exception クラスの新しいインスタンスを初期化します。
+        /// シリアル化したデータを使用して、<see cref="CommandException"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="info">スローされている例外に関するシリアル化済みオブジェクトデータ</param>
         /// <param name="context">転送元または転送先についてのコンテキスト情報を含むコンテキスト</param>
