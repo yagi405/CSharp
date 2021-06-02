@@ -8,6 +8,7 @@ namespace CS35.AddressBook.Commands.Imp
 {
     public class Save : AbstractCommand
     {
+        /// <inheritdoc/>
         protected override void ExecuteImp(ref IList<AddressInfo> addressBook, params string[] parameters)
         {
             Args.NotNull(addressBook, nameof(addressBook));
@@ -59,6 +60,7 @@ namespace CS35.AddressBook.Commands.Imp
             }
         }
 
+        /// <inheritdoc/>
         protected override string GetHelpMessage()
         {
             return @$" 指定されたファイルパスに住所録データを保存します。

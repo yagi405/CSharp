@@ -8,8 +8,10 @@ namespace CS35.AddressBook.Commands.Imp
 {
     public class Load : AbstractCommand
     {
+        /// <inheritdoc/>
         protected override bool AllowEmptyAddressBook => true;
 
+        /// <inheritdoc/>
         protected override void ExecuteImp(ref IList<AddressInfo> addressBook, params string[] parameters)
         {
             Args.NotNull(addressBook, nameof(addressBook));
@@ -78,6 +80,7 @@ namespace CS35.AddressBook.Commands.Imp
             }
         }
 
+        /// <inheritdoc/>
         protected override string GetHelpMessage()
         {
             return @$" 指定されたファイルパスから住所録データを読み込みます。

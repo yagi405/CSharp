@@ -7,6 +7,7 @@ namespace CS35.AddressBook.Commands.Imp
 {
     public class List : AbstractCommand
     {
+        /// <inheritdoc/>
         protected override void ExecuteImp(ref IList<AddressInfo> addressBook, params string[] parameters)
         {
             Args.NotNull(addressBook, nameof(addressBook));
@@ -23,7 +24,8 @@ namespace CS35.AddressBook.Commands.Imp
             Console.WriteLine();
         }
 
-        protected override string GetHelpMessage()
+        /// <inheritdoc/>
+        protected overridme string GetHelpMessage()
         {
             return @" 登録されている住所録データを一覧表示します。";
         }

@@ -12,24 +12,16 @@ namespace CS35.AddressBook.Commands.Imp
         /// </summary>
         private const int FieldCount = 4;
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         protected override bool AllowEmptyAddressBook => true;
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         protected override bool IsAvailableAsCommand => false;
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         protected override bool IsDefault => true;
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         protected override void ExecuteImp(ref IList<AddressInfo> addressBook, params string[] parameters)
         {
             Args.NotNull(addressBook, nameof(addressBook));
@@ -71,9 +63,7 @@ namespace CS35.AddressBook.Commands.Imp
             return new AddressInfo(parameters[0], age, parameters[2], parameters[3]);
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         protected override string GetHelpMessage()
         {
             return @" 以下の書式で住所録データを入力してください。

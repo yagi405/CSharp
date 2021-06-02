@@ -7,6 +7,7 @@ namespace CS35.AddressBook.Commands.Imp
 {
     public class Clear : AbstractCommand
     {
+        /// <inheritdoc/>
         protected override void ExecuteImp(ref IList<AddressInfo> addressBook, params string[] parameters)
         {
             Args.NotNull(addressBook, nameof(addressBook));
@@ -16,6 +17,7 @@ namespace CS35.AddressBook.Commands.Imp
             Console.WriteLine("住所録データを全て削除しました。");
         }
 
+        /// <inheritdoc/>
         protected override string GetHelpMessage()
         {
             return @" 登録されている住所録データを全て削除します。";

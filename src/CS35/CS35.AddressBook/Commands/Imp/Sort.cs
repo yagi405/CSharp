@@ -43,6 +43,7 @@ namespace CS35.AddressBook.Commands.Imp
         private static readonly Dictionary<string, Sorter> _sorterIndex =
             _availableSorters.ToDictionary(x => x.Keyword);
 
+        /// <inheritdoc/>
         protected override void ExecuteImp(ref IList<AddressInfo> addressBook, params string[] parameters)
         {
             Args.NotNull(addressBook, nameof(addressBook));
@@ -118,6 +119,7 @@ namespace CS35.AddressBook.Commands.Imp
             }
         }
 
+        /// <inheritdoc/>
         protected override string GetHelpMessage()
         {
             var builder = new StringBuilder();

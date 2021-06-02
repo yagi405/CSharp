@@ -9,6 +9,7 @@ namespace CS35.AddressBook.Commands.Imp
 {
     public class Find : AbstractCommand
     {
+        /// <inheritdoc/>
         protected override void ExecuteImp(ref IList<AddressInfo> addressBook, params string[] parameters)
         {
             Args.NotNull(addressBook, nameof(addressBook));
@@ -67,6 +68,7 @@ namespace CS35.AddressBook.Commands.Imp
             new List().Execute(ref result);
         }
 
+        /// <inheritdoc/>
         protected override string GetHelpMessage()
         {
             var builder = new StringBuilder();

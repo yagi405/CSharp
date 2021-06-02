@@ -6,8 +6,10 @@ namespace CS35.AddressBook.Commands.Imp
 {
     public class Help : AbstractCommand
     {
+        /// <inheritdoc/>
         protected override bool AllowEmptyAddressBook => true;
 
+        /// <inheritdoc/>
         protected override void ExecuteImp(ref IList<AddressInfo> addressBook, params string[] parameters)
         {
             Console.WriteLine(@"
@@ -20,6 +22,7 @@ namespace CS35.AddressBook.Commands.Imp
             }
         }
 
+        /// <inheritdoc/>
         protected override string GetHelpMessage()
         {
             return @" 各コマンドの使用方法を表示します。";
