@@ -12,7 +12,7 @@
         /// <remarks>除去するのは両端いずれにもダブルクォーテーションが存在する場合のみ</remarks>
         public static void RemoveStartEndDoubleQuotes(ref string s)
         {
-            s = s != null && s.Length >= 2 && s.StartsWith("\"") && s.EndsWith("\"")
+            s = s is { Length: >= 2 } && s.StartsWith("\"") && s.EndsWith("\"")
                 ? s[1..^1]
                 : s;
         }
