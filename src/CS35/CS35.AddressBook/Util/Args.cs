@@ -8,7 +8,7 @@ namespace CS35.AddressBook.Util
     public static class Args
     {
         /// <summary>
-        /// 指定された参照型オブジェクトのnull検証をおこないます。
+        /// 指定された参照型オブジェクトが null でないことを検証します。
         /// </summary>
         /// <typeparam name="T">参照型</typeparam>
         /// <param name="value">検証対象のオブジェクト</param>
@@ -22,7 +22,7 @@ namespace CS35.AddressBook.Util
         }
 
         /// <summary>
-        /// 指定された文字列が null 又は 空文字でないかを検証します。
+        /// 指定された文字列が null 又は 空文字 でないことを検証します。
         /// </summary>
         /// <param name="value">検証対象の文字列</param>
         /// <param name="name">NGの場合に例外の発生原因とする引数の名前</param>
