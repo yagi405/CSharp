@@ -66,9 +66,12 @@ namespace CS35.AddressBook.Commands.Imp
             var sortType = parameters.Length == 1 || string.IsNullOrEmpty(parameters[1]) ? AscKeyword
                 : parameters[1];
 
-            addressBook = sortType == AscKeyword ? sorter.OrderBy(addressBook).ToList()
-                : sortType == DescKeyword ? sorter.OrderByDesc(addressBook).ToList()
-                : throw new CommandException($"{sortType}はソート方式として定義されておりません。");
+            addressBook = sortType switch
+            {
+                AscKeyword => sorter.OrderBy(addressBook).ToList(),
+                DescKeyword => sorter.OrderByDesc(addressBook).ToList(),
+                _ => throw new CommandException($"{sortType}はソート方式として定義されておりません。")
+            };
 
             sortType = sortType == AscKeyword ? "昇順" : "降順";
 
