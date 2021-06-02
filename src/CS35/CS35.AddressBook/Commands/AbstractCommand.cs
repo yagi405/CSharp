@@ -87,7 +87,7 @@ namespace CS35.AddressBook.Commands
         /// <summary>
         /// コマンドの名称を取得します。
         /// </summary>
-        public virtual string Name => GetType().Name?.ToLowerInvariant();
+        public virtual string Name => GetType().Name.ToLowerInvariant();
 
         /// <summary>
         /// コマンドの名称を接頭辞付きで取得します。

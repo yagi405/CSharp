@@ -45,7 +45,7 @@ namespace CS35.AddressBook.Commands.Imp
                         }
                         try
                         {
-                            var info = Add.CreateAddressInfo(line.Split(new char[] { ' ' }));
+                            var info = Add.CreateAddressInfo(line.Split(new[] { ' ' }));
                             tempAddressBook.Add(info);
                         }
                         catch (CommandExeption ex)
