@@ -24,16 +24,16 @@ namespace CS35.AddressBook.Commands.Imp
         /// </summary>
         private static readonly Sorter[] _availableSorters = new Sorter[]
         {
-            new Sorter(nameof(AddressInfo.Name).ToLowerInvariant(),
+            new(nameof(AddressInfo.Name).ToLowerInvariant(),
                 x => x.OrderBy(info => info.Name),
                 x => x.OrderByDescending(info => info.Name)),
-            new Sorter(nameof(AddressInfo.Age).ToLowerInvariant(),
+            new(nameof(AddressInfo.Age).ToLowerInvariant(),
                 x => x.OrderBy(info => info.Age),
                 x => x.OrderByDescending(info => info.Age)),
-            new Sorter(nameof(AddressInfo.TelNo).ToLowerInvariant(),
+            new(nameof(AddressInfo.TelNo).ToLowerInvariant(),
                 x => x.OrderBy(info => info.TelNo),
                 x => x.OrderByDescending(info => info.TelNo)),
-            new Sorter(nameof(AddressInfo.Address).ToLowerInvariant(),
+            new(nameof(AddressInfo.Address).ToLowerInvariant(),
                 x => x.OrderBy(info => info.Address),
                 x => x.OrderByDescending(info => info.Address)),
         };
