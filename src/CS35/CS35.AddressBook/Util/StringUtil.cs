@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace CS35.AddressBook.Util
+﻿namespace CS35.AddressBook.Util
 {
     /// <summary>
     /// 文字列操作関連の汎用的な処理を提供するクラスです。
