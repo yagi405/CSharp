@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace CS35.AddressBook.Commands.Imp
 {
+    /// <summary>
+    /// list コマンドを示すクラスです。
+    /// </summary>
     public class List : AbstractCommand
     {
         /// <inheritdoc/>

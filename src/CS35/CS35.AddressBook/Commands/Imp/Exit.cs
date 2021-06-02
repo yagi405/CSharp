@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace CS35.AddressBook.Commands.Imp
 {
+    /// <summary>
+    /// exit コマンドを示すクラスです。
+    /// </summary>
     public class Exit : AbstractCommand
     {
         /// <inheritdoc/>

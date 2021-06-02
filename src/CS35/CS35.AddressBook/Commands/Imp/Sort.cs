@@ -7,6 +7,9 @@ using System.Text;
 
 namespace CS35.AddressBook.Commands.Imp
 {
+    /// <summary>
+    /// sort コマンドを示すクラスです。
+    /// </summary>
     public class Sort : AbstractCommand
     {
         /// <summary>

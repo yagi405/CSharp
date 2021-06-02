@@ -6,6 +6,9 @@ using System.IO;
 
 namespace CS35.AddressBook.Commands.Imp
 {
+    /// <summary>
+    /// load コマンドを示すクラスです。
+    /// </summary>
     public class Load : AbstractCommand
     {
         /// <inheritdoc/>
