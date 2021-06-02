@@ -1,0 +1,137 @@
+﻿using CS35.AddressBook.Data;
+using CS35.AddressBook.Util;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace CS35.AddressBook.Commands.Imp
+{
+    public class Sort : AbstractCommand
+    {
+        /// <summary>
+        /// 昇順のソート方式を示す文字列です。
+        /// </summary>
+        private const string AscKeyword = "asc";
+
+        /// <summary>
+        /// 降順のソート方式を示す文字列です。
+        /// </summary>
+        private const string DescKeyword = "desc";
+
+        /// <summary>
+        /// 公開するSorterです。
+        /// </summary>
+        private static readonly Sorter[] _availableSorters = new Sorter[]
+        {
+            new Sorter(nameof(AddressInfo.Name).ToLowerInvariant(),
+                x => x.OrderBy(x => x.Name),
+                x => x.OrderByDescending(x => x.Name)),
+            new Sorter(nameof(AddressInfo.Age).ToLowerInvariant(),
+                x => x.OrderBy(x => x.Age),
+                x => x.OrderByDescending(x => x.Age)),
+            new Sorter(nameof(AddressInfo.TelNo).ToLowerInvariant(),
+                x => x.OrderBy(x => x.TelNo),
+                x => x.OrderByDescending(x => x.TelNo)),
+            new Sorter(nameof(AddressInfo.Address).ToLowerInvariant(),
+                x => x.OrderBy(x => x.Address),
+                x => x.OrderByDescending(x => x.Address)),
+        };
+
+        /// <summary>
+        /// Sorterの索引です。
+        /// </summary>
+        private static readonly Dictionary<string, Sorter> _sorterIndex =
+            _availableSorters.ToDictionary(x => x.Keyword);
+
+        protected override void ExecuteImp(ref IList<AddressInfo> addressBook, params string[] parameters)
+        {
+            Args.NotNull(addressBook, nameof(addressBook));
+
+            if (parameters == null || parameters.Length == 0)
+            {
+                throw new CommandExeption("ソート対象の項目名を指定してください。");
+            }
+
+            if (parameters.Length > 2)
+            {
+                throw new CommandExeption("ソート対象の項目名とソート方式の2つを指定してください。");
+            }
+
+            var itemName = !string.IsNullOrEmpty(parameters[0]) ? parameters[0]
+                : throw new CommandExeption("検索対象の項目名を指定してください。");
+
+            var sorter = _sorterIndex.GetValueOrDefault(itemName) ??
+                throw new CommandExeption($"{itemName}はソート対象の項目名として定義されておりません。");
+
+            var sortType = parameters.Length == 1 || string.IsNullOrEmpty(parameters[1]) ? AscKeyword
+                : parameters[1];
+
+            addressBook = sortType == AscKeyword ? sorter.OrderBy(addressBook).ToList()
+                : sortType == DescKeyword ? sorter.OrderByDesc(addressBook).ToList()
+                : throw new CommandExeption($"{sortType}はソート方式として定義されておりません。");
+
+            sortType = sortType == AscKeyword ? "昇順" : "降順";
+
+            Console.WriteLine($"{itemName}の{sortType}で住所録データをソートしました。");
+        }
+
+        /// <summary>
+        /// ソート処理を担うSorterを示す内部クラスです。
+        /// </summary>
+        public class Sorter
+        {
+            /// <summary>
+            /// Sorterを一意に特定可能なキーワードを取得します。
+            /// </summary>
+            public string Keyword { get; }
+
+            /// <summary>
+            /// 昇順ソートをおこなうデリゲートです。
+            /// </summary>
+            public Func<IEnumerable<AddressInfo>, IOrderedEnumerable<AddressInfo>> OrderBy { get; }
+
+            /// <summary>
+            /// 降順ソートをおこなうデリゲートです。
+            /// </summary>
+            public Func<IEnumerable<AddressInfo>, IOrderedEnumerable<AddressInfo>> OrderByDesc { get; }
+
+            /// <summary>
+            /// <see cref="Sorter"/>のインスタンスを生成します。
+            /// </summary>
+            /// <param name="keyword">Sorterを一意に特定可能なキーワード</param>
+            /// <param name="orderBy">昇順ソートをおこなうデリゲート</param>
+            /// <param name="orderByDesc">降順ソートをおこなうデリゲート</param>
+            public Sorter(string keyword,
+                Func<IEnumerable<AddressInfo>, IOrderedEnumerable<AddressInfo>> orderBy,
+                Func<IEnumerable<AddressInfo>, IOrderedEnumerable<AddressInfo>> orderByDesc)
+            {
+                Args.NotEmpty(keyword, nameof(keyword));
+                (Keyword, OrderBy, OrderByDesc) =
+                    (
+                    keyword,
+                    orderBy ?? throw new ArgumentNullException(nameof(orderBy)),
+                    orderByDesc ?? throw new ArgumentNullException(nameof(orderByDesc))
+                    );
+            }
+        }
+
+        protected override string GetHelpMessage()
+        {
+            var builder = new StringBuilder();
+
+            builder.AppendLine(@$" 住所録データを指定された項目名とソート方式に従って並び替えます。
+  例）{NameWithPrefix} {nameof(AddressInfo.Age).ToLowerInvariant()} desc => 年齢で住所録データを降順に並び替え
+ 項目名は以下の通りです。");
+
+            builder.AppendLine(string.Join("\r\n", _availableSorters.Select(x => $"  ・{x.Keyword}")));
+
+            builder.Append($" ソート方式は{AscKeyword}を指定した場合は昇順、{DescKeyword}は降順となり、省略時は昇順になります。");
+
+            builder.Append($@"  ※コマンドと、項目名はスペース文字区切りで入力してください。
+ ※値を確認する際は{new List().NameWithPrefix}コマンドを実行してください。");
+
+            return builder.ToString();
+        }
+    }
+}
