@@ -70,7 +70,7 @@ namespace CS35.AddressBook.Commands
             }
 
             return _commandIndex.GetValueOrDefault(command)
-                ?? throw new CommandExeption($"{command}は未定義のコマンドです。");
+                ?? throw new CommandException($"{command}は未定義のコマンドです。");
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace CS35.AddressBook.Commands
 
             if (!AllowEmptyAddressBook && !addressBook.Any())
             {
-                throw new CommandExeption("データが1件も登録されておりません。");
+                throw new CommandException("データが1件も登録されておりません。");
             }
 
             ExecuteImp(ref addressBook, parameters);

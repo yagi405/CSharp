@@ -13,23 +13,23 @@ namespace CS35.AddressBook.Commands.Imp
 
             if (parameters == null || parameters.Length == 0)
             {
-                throw new CommandExeption("削除対象のNoを指定してください。");
+                throw new CommandException("削除対象のNoを指定してください。");
             }
 
             if (parameters.Length > 1)
             {
-                throw new CommandExeption("削除対象のNoは1つだけ指定してください。");
+                throw new CommandException("削除対象のNoは1つだけ指定してください。");
             }
 
             if (!int.TryParse(parameters[0], out var num))
             {
-                throw new CommandExeption($"削除対象のNoは数値で入力してください。");
+                throw new CommandException($"削除対象のNoは数値で入力してください。");
             }
 
             var index = num - 1;
             if (index < 0 || addressBook.Count <= index)
             {
-                throw new CommandExeption($"指定された削除対象のNo「{num}」に対応するデータは存在しません。");
+                throw new CommandException($"指定された削除対象のNo「{num}」に対応するデータは存在しません。");
             }
 
             addressBook.RemoveAt(index);

@@ -14,16 +14,16 @@ namespace CS35.AddressBook.Commands.Imp
 
             if (parameters == null || parameters.Length == 0)
             {
-                throw new CommandExeption("保存先のファイルパスを入力してください。");
+                throw new CommandException("保存先のファイルパスを入力してください。");
             }
 
             if (parameters.Length > 1)
             {
-                throw new CommandExeption("保存先のファイルパスは1つだけ指定してください。");
+                throw new CommandException("保存先のファイルパスは1つだけ指定してください。");
             }
 
             var filePath = !string.IsNullOrEmpty(parameters[0]) ? parameters[0]
-                : throw new CommandExeption("保存先のファイルパスを入力してください。");
+                : throw new CommandException("保存先のファイルパスを入力してください。");
 
             StringUtil.RemoveStartEndDoubleQuotes(ref filePath);
 
@@ -43,19 +43,19 @@ namespace CS35.AddressBook.Commands.Imp
             }
             catch (DirectoryNotFoundException ex)
             {
-                throw new CommandExeption("指定されたディレクトリが存在しません。", ex);
+                throw new CommandException("指定されたディレクトリが存在しません。", ex);
             }
             catch (PathTooLongException ex)
             {
-                throw new CommandExeption("指定されたファイルパスが長すぎます。", ex);
+                throw new CommandException("指定されたファイルパスが長すぎます。", ex);
             }
             catch (IOException ex)
             {
-                throw new CommandExeption("指定されたファイルに書き込むことができません。", ex);
+                throw new CommandException("指定されたファイルに書き込むことができません。", ex);
             }
             catch (UnauthorizedAccessException ex)
             {
-                throw new CommandExeption("指定されたファイルへのアクセスが許可されておりません。", ex);
+                throw new CommandException("指定されたファイルへのアクセスが許可されておりません。", ex);
             }
         }
 

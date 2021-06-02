@@ -50,26 +50,26 @@ namespace CS35.AddressBook.Commands.Imp
 
             if (parameters == null || parameters.Length == 0)
             {
-                throw new CommandExeption("ソート対象の項目名を指定してください。");
+                throw new CommandException("ソート対象の項目名を指定してください。");
             }
 
             if (parameters.Length > 2)
             {
-                throw new CommandExeption("ソート対象の項目名とソート方式の2つを指定してください。");
+                throw new CommandException("ソート対象の項目名とソート方式の2つを指定してください。");
             }
 
             var itemName = !string.IsNullOrEmpty(parameters[0]) ? parameters[0]
-                : throw new CommandExeption("検索対象の項目名を指定してください。");
+                : throw new CommandException("検索対象の項目名を指定してください。");
 
             var sorter = _sorterIndex.GetValueOrDefault(itemName) ??
-                throw new CommandExeption($"{itemName}はソート対象の項目名として定義されておりません。");
+                throw new CommandException($"{itemName}はソート対象の項目名として定義されておりません。");
 
             var sortType = parameters.Length == 1 || string.IsNullOrEmpty(parameters[1]) ? AscKeyword
                 : parameters[1];
 
             addressBook = sortType == AscKeyword ? sorter.OrderBy(addressBook).ToList()
                 : sortType == DescKeyword ? sorter.OrderByDesc(addressBook).ToList()
-                : throw new CommandExeption($"{sortType}はソート方式として定義されておりません。");
+                : throw new CommandException($"{sortType}はソート方式として定義されておりません。");
 
             sortType = sortType == AscKeyword ? "昇順" : "降順";
 

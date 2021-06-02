@@ -38,7 +38,7 @@ namespace CS35.AddressBook
                         command.Execute(ref addressBook, inputs);
 
                     }
-                    catch (CommandExeption ex)
+                    catch (CommandException ex)
                     {
                         Console.WriteLine(ex.Message);
                     }

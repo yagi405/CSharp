@@ -15,19 +15,19 @@ namespace CS35.AddressBook.Commands.Imp
 
             if (parameters == null || parameters.Length < 2)
             {
-                throw new CommandExeption("検索対象の項目名と値を指定してください。");
+                throw new CommandException("検索対象の項目名と値を指定してください。");
             }
 
             if (parameters.Length > 2)
             {
-                throw new CommandExeption("検索対象の項目名と値の2つを指定してください。");
+                throw new CommandException("検索対象の項目名と値の2つを指定してください。");
             }
 
             var itemName = !string.IsNullOrEmpty(parameters[0]) ? parameters[0]
-                : throw new CommandExeption("検索対象の項目名を指定してください。");
+                : throw new CommandException("検索対象の項目名を指定してください。");
 
             var value = !string.IsNullOrEmpty(parameters[1]) ? parameters[1]
-                : throw new CommandExeption("検索対象の値を指定してください。");
+                : throw new CommandException("検索対象の値を指定してください。");
 
             IList<AddressInfo> result = new List<AddressInfo>();
             switch (itemName)
@@ -57,12 +57,12 @@ namespace CS35.AddressBook.Commands.Imp
                         .ToList();
                     break;
                 default:
-                    throw new CommandExeption($"{itemName}は検索対象の項目名として定義されておりません。");
+                    throw new CommandException($"{itemName}は検索対象の項目名として定義されておりません。");
             }
 
             if (!result.Any())
             {
-                throw new CommandExeption("検索条件に該当する住所録データが存在しません。");
+                throw new CommandException("検索条件に該当する住所録データが存在しません。");
             }
             new List().Execute(ref result, new string[] { });
         }

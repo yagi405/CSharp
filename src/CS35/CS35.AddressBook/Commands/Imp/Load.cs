@@ -16,16 +16,16 @@ namespace CS35.AddressBook.Commands.Imp
 
             if (parameters == null || parameters.Length == 0)
             {
-                throw new CommandExeption("読み込み先のファイルパスを入力してください。");
+                throw new CommandException("読み込み先のファイルパスを入力してください。");
             }
 
             if (parameters.Length > 1)
             {
-                throw new CommandExeption("読み込み先のファイルパスは1つだけ指定してください。");
+                throw new CommandException("読み込み先のファイルパスは1つだけ指定してください。");
             }
 
             var filePath = !string.IsNullOrEmpty(parameters[0]) ? parameters[0]
-                : throw new CommandExeption("読み込み先のファイルパスを入力してください。");
+                : throw new CommandException("読み込み先のファイルパスを入力してください。");
 
            StringUtil.RemoveStartEndDoubleQuotes(ref filePath);
 
@@ -48,9 +48,9 @@ namespace CS35.AddressBook.Commands.Imp
                             var info = Add.CreateAddressInfo(line.Split(new[] { ' ' }));
                             tempAddressBook.Add(info);
                         }
-                        catch (CommandExeption ex)
+                        catch (CommandException ex)
                         {
-                            throw new CommandExeption("ファイルの内容が不正です。", ex);
+                            throw new CommandException("ファイルの内容が不正です。", ex);
                         }
                     }
 
@@ -66,15 +66,15 @@ namespace CS35.AddressBook.Commands.Imp
             }
             catch (FileNotFoundException ex)
             {
-                throw new CommandExeption("指定されたファイルが存在しません。", ex);
+                throw new CommandException("指定されたファイルが存在しません。", ex);
             }
             catch (DirectoryNotFoundException ex)
             {
-                throw new CommandExeption("指定されたディレクトリが存在しません。", ex);
+                throw new CommandException("指定されたディレクトリが存在しません。", ex);
             }
             catch (IOException ex)
             {
-                throw new CommandExeption("指定されたファイルを読み込むことができません。", ex);
+                throw new CommandException("指定されたファイルを読み込むことができません。", ex);
             }
         }
 

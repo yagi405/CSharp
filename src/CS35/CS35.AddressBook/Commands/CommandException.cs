@@ -7,14 +7,14 @@ namespace CS35.AddressBook.Commands
     /// コマンド操作時の例外を示すクラスです。
     /// </summary>
     [Serializable()]
-    public class CommandExeption : Exception
+    public class CommandException : Exception
     {
-        public CommandExeption() { }
+        public CommandException() { }
 
-        public CommandExeption(string message) : base(message) { }
+        public CommandException(string message) : base(message) { }
 
-        public CommandExeption(string message, Exception innerException) : base(message, innerException) { }
+        public CommandException(string message, Exception innerException) : base(message, innerException) { }
 
-        protected CommandExeption(SerializationInfo info, StreamingContext context) : base(info, context) { }
+        protected CommandException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
 }

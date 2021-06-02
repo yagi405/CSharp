@@ -37,7 +37,7 @@ namespace CS35.AddressBook.Commands.Imp
             var address = CreateAddressInfo(parameters);
             if (addressBook.Contains(address))
             {
-                throw new CommandExeption("既に登録されている住所録データです。");
+                throw new CommandException("既に登録されている住所録データです。");
             }
 
             addressBook.Add(address);
@@ -53,17 +53,17 @@ namespace CS35.AddressBook.Commands.Imp
         {
             if (parameters == null || parameters.Length != FieldCount)
             {
-                throw new CommandExeption("住所録データの書式が不正です。");
+                throw new CommandException("住所録データの書式が不正です。");
             }
 
             if (string.IsNullOrEmpty(parameters[0]))
             {
-                throw new CommandExeption("名前及び年齢は必ず入力してください。");
+                throw new CommandException("名前及び年齢は必ず入力してください。");
             }
 
             if (!int.TryParse(parameters[1], out var age))
             {
-                throw new CommandExeption("年齢は数値で入力してください。");
+                throw new CommandException("年齢は数値で入力してください。");
             }
 
             //電話番号と住所のチェックは実装していない
