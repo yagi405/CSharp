@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace CS35.AddressBook.Commands
 {
     /// <summary>
     /// コマンド操作時の例外を示すクラスです。
     /// </summary>
+    [Serializable]
     public class CommandException : Exception
     {
         /// <summary>
@@ -26,5 +28,13 @@ namespace CS35.AddressBook.Commands
         /// <param name="innerException">現在の例外の原因である例外</param>
         public CommandException(string message, Exception innerException)
             : base(message, innerException) { }
+
+        /// <summary>
+        /// シリアル化したデータを使用して、System.Exception クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="info">スローされている例外に関するシリアル化済みオブジェクトデータ</param>
+        /// <param name="context">転送元または転送先についてのコンテキスト情報を含むコンテキスト</param>
+        protected CommandException(SerializationInfo info, StreamingContext context)
+            : base(info, context) { }
     }
 }

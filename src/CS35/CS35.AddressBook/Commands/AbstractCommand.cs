@@ -69,7 +69,7 @@ namespace CS35.AddressBook.Commands
             }
 
             return _commandIndex.GetValueOrDefault(command)
-                ?? throw new CommandException($"{command}は未定義のコマンドです。");
+                ?? throw new CommandException($"{command} は未定義のコマンドです。");
         }
 
         /// <summary>
