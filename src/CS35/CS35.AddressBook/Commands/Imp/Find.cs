@@ -64,7 +64,7 @@ namespace CS35.AddressBook.Commands.Imp
             {
                 throw new CommandException("検索条件に該当する住所録データが存在しません。");
             }
-            new List().Execute(ref result, new string[] { });
+            new List().Execute(ref result);
         }
 
         protected override string GetHelpMessage()

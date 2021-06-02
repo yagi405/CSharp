@@ -6,7 +6,7 @@ namespace CS35.AddressBook.Commands
     /// <summary>
     /// コマンド操作時の例外を示すクラスです。
     /// </summary>
-    [Serializable()]
+    [Serializable]
     public class CommandException : Exception
     {
         public CommandException() { }
