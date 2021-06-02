@@ -10,7 +10,7 @@ namespace CS35.AddressBook.Commands.Imp
 
         protected override void ExecuteImp(ref IList<AddressInfo> addressBook, params string[] parameters)
         {
-            Console.WriteLine($@"
+            Console.WriteLine(@"
 [コマンド一覧]
 ");
             var messages = GetHelpMessages();
@@ -22,7 +22,7 @@ namespace CS35.AddressBook.Commands.Imp
 
         protected override string GetHelpMessage()
         {
-            return @$" 各コマンドの使用方法を表示します。";
+            return @" 各コマンドの使用方法を表示します。";
         }
     }
 }

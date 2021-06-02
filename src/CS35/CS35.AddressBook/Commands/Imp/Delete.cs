@@ -23,7 +23,7 @@ namespace CS35.AddressBook.Commands.Imp
 
             if (!int.TryParse(parameters[0], out var num))
             {
-                throw new CommandException($"削除対象のNoは数値で入力してください。");
+                throw new CommandException("削除対象のNoは数値で入力してください。");
             }
 
             var index = num - 1;

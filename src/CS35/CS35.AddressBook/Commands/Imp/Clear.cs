@@ -13,12 +13,12 @@ namespace CS35.AddressBook.Commands.Imp
 
             addressBook.Clear();
 
-            Console.WriteLine($"住所録データを全て削除しました。");
+            Console.WriteLine("住所録データを全て削除しました。");
         }
 
         protected override string GetHelpMessage()
         {
-            return @$" 登録されている住所録データを全て削除します。";
+            return @" 登録されている住所録データを全て削除します。";
         }
     }
 }

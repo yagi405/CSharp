@@ -25,7 +25,7 @@ namespace CS35.AddressBook.Commands.Imp
 
         protected override string GetHelpMessage()
         {
-            return @$" 登録されている住所録データを一覧表示します。";
+            return @" 登録されている住所録データを一覧表示します。";
         }
     }
 }

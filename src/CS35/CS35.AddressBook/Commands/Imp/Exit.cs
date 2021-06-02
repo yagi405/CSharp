@@ -16,7 +16,7 @@ namespace CS35.AddressBook.Commands.Imp
 
         protected override string GetHelpMessage()
         {
-            return @$" 住所録アプリケーションを終了します。";
+            return @" 住所録アプリケーションを終了します。";
         }
     }
 }
