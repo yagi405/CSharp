@@ -8,6 +8,8 @@ namespace CS35.AddressBook
 {
     /// <summary>
     /// 住所録アプリケーションのエントリーポイントを定義するクラスです。
+    /// ドキュメントコメント
+    /// https://docs.microsoft.com/ja-jp/dotnet/csharp/codedoc
     /// </summary>
     internal class Program
     {
