@@ -50,11 +50,9 @@ namespace CS35.AddressBook.Commands
         /// 既定のコマンドを取得します。
         /// </summary>
         /// <returns>既定のコマンド</returns>
-        public static AbstractCommand GetDefaultCommand()
-        {
-            //既定のコマンド（IsDefault == true）が複数存在する場合は、先頭のコマンドを採用
-            return _allCommands.FirstOrDefault(x => x.IsDefault) ?? new Add();
-        }
+        /// 式形式のメンバ
+        /// https://docs.microsoft.com/ja-jp/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members
+        public static AbstractCommand DefaultCommand => _allCommands.FirstOrDefault(x => x.IsDefault);
 
         /// <summary>
         /// 指定されたコマンド文字列に対応するコマンドの実体を生成します。
@@ -84,16 +82,14 @@ namespace CS35.AddressBook.Commands
         /// <returns>既定の使用方法を示す文字列</returns>
         public static string GetDefaultHelpMessage()
         {
-            return $@"{GetDefaultCommand()?.GetHelpMessage() ?? new Add().GetHelpMessage()}
- 各コマンドの使用方法を確認する場合は {new Help().NameWithPrefix} と入力してください。
+            return $@"{DefaultCommand?.GetHelpMessage()}
+ 各コマンドの使用方法を確認する場合は {CommandPrefix}help と入力してください。
  なお、先頭の文字が {CommandPrefix} の場合、入力された内容はコマンドとみなされます。";
         }
 
         /// <summary>
         /// コマンドの名称を取得します。
         /// </summary>
-        /// 式形式のメンバー
-        /// https://docs.microsoft.com/ja-jp/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members
         public virtual string Name => GetType().Name.ToLowerInvariant();
 
         /// <summary>

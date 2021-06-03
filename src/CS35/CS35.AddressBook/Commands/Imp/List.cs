@@ -2,6 +2,7 @@
 using CS35.AddressBook.Util;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CS35.AddressBook.Commands.Imp
 {
@@ -15,10 +16,20 @@ namespace CS35.AddressBook.Commands.Imp
         {
             Args.NotNull(addressBook, nameof(addressBook));
 
+            const string headerNo = "No.";
+            var noWidth = Math.Max(addressBook.Count.ToString().Length, headerNo.Length) + 1;
+            var nameWidth = Math.Max(addressBook.Max(x => x.Name.Length), nameof(AddressInfo.Name).Length) + 1;
+            var ageWidth = Math.Max(addressBook.Max(x => x.Age.ToString().Length), nameof(AddressInfo.TelNo).Length) + 1;
+            var telNoWidth = Math.Max(addressBook.Max(x => x.TelNo.Length), nameof(AddressInfo.TelNo).Length) + 1;
+
+            var format = $"{{0,{noWidth}}}|{{1,{-nameWidth}}}|{{2,{ageWidth}}}|{{3,{-telNoWidth}}}|{{4}}";
+            
             Console.WriteLine();
-            //必要な幅を厳密に計算していない
-            const string format = "{0,3} {1,-16} {2,3} {3,-14} {4}";
-            Console.WriteLine(format, "No.", nameof(AddressInfo.Name), nameof(AddressInfo.Age), nameof(AddressInfo.TelNo), nameof(AddressInfo.Address));
+            Console.WriteLine(format, headerNo, nameof(AddressInfo.Name), nameof(AddressInfo.Age), nameof(AddressInfo.TelNo), nameof(AddressInfo.Address));
+
+            const string line = "-";
+            Console.WriteLine($"{line.Repeat(noWidth)}+{line.Repeat(nameWidth)}+{line.Repeat(ageWidth)}+{line.Repeat(telNoWidth)}+--------------");
+
             var i = 1;
             foreach (var address in addressBook)
             {

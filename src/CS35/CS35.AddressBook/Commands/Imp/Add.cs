@@ -58,11 +58,10 @@ namespace CS35.AddressBook.Commands.Imp
 
             if (!int.TryParse(parameters[1], out var age))
             {
-                throw new CommandException("年齢は数値で入力してください。");
+                throw new CommandException("年齢を数値に変換することができません。");
             }
 
             //電話番号と住所のチェックは実装していない
-
             return new AddressInfo(parameters[0], age, parameters[2], parameters[3]);
         }
 

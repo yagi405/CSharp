@@ -40,9 +40,9 @@ namespace CS35.AddressBook
                             continue;
                         }
 
-                        command = AbstractCommand.GetDefaultCommand();
+                        command = AbstractCommand.DefaultCommand;
                         //既定のコマンドはコマンド文字列無しで呼び出し
-                        command.Execute(ref addressBook, inputs);
+                        command?.Execute(ref addressBook, inputs);
 
                     }
                     catch (CommandException ex)
