@@ -51,7 +51,7 @@ namespace CS35.AddressBook.Commands.Imp
                         }
                         try
                         {
-                            var info = Add.CreateAddressInfo(line.Split(new[] { ' ' }));
+                            var info = Add.CreateAddressInfo(line.Split(new[] { ' ', '　' }));
                             tempAddressBook.Add(info);
                         }
                         catch (CommandException ex)
@@ -63,7 +63,7 @@ namespace CS35.AddressBook.Commands.Imp
                     //tempAddressBook = File
                     //    .ReadLines(filePath)
                     //    .Where(x => !string.IsNullOrEmpty(x))
-                    //    .Select(x => Add.CreateAddressInfo(x.Split(new[] { ' ' })))
+                    //    .Select(x => Add.CreateAddressInfo(x.Split(new[] { ' ','　' })))
                     //    .ToList();
 
                     addressBook = tempAddressBook;
