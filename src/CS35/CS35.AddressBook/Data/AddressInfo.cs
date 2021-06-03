@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CS35.AddressBook.Data
+﻿namespace CS35.AddressBook.Data
 {
     /// <summary>
     /// 一件分の住所録データを示すレコードです。

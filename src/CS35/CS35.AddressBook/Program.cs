@@ -30,7 +30,7 @@ namespace CS35.AddressBook
                         Console.WriteLine();
                         Console.Write("> ");
                         var line = Console.ReadLine();
-                        var inputs = line.Split(new[] { ' ', '　' });
+                        var inputs = line.Split(' ', '　');
 
                         var command = AbstractCommand.CreateCommand(inputs[0]);
                         if (command != null)
