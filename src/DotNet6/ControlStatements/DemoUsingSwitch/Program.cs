@@ -2,7 +2,7 @@
 string? input = Console.ReadLine();
 int i = int.Parse(input);
 
-switch (i)
+switch (i % 3)
 {
     case 1:
         Console.WriteLine("1が入力されました。");
