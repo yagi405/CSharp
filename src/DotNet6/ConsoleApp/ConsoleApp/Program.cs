@@ -1,11 +1,10 @@
-﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace ConsoleApp
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             var kbInput = new KeyboardInput(ConsoleKey.Escape);
             kbInput.OnKeyDown += OnKeyDown;
@@ -115,7 +114,7 @@ namespace ConsoleApp
                         records[i].KeyEvent.UnicodeChar);
 
                     // check for exit key press
-                    if ((exitKeyPressed = records[i].KeyEvent.wVirtualKeyCode == _exitKey) == true) break;
+                    if (exitKeyPressed == (records[i].KeyEvent.wVirtualKeyCode == _exitKey)) break;
                 }
             }
         }
