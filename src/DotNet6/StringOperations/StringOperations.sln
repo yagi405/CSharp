@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringOperations.Demo", "StringOperations.Demo\StringOperations.Demo.csproj", "{EFA62FFB-DA80-4789-A0F7-CBEA98EFDFB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringOperations.Demo", "StringOperations.Demo\StringOperations.Demo.csproj", "{EFA62FFB-DA80-4789-A0F7-CBEA98EFDFB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringOperations.Exercise", "StringOperations.Exercise\StringOperations.Exercise.csproj", "{B5258DD3-8C4E-4643-9DF1-95762BBEC3A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringOperations.Exercise", "StringOperations.Exercise\StringOperations.Exercise.csproj", "{B5258DD3-8C4E-4643-9DF1-95762BBEC3A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoUsingMember", "DemoUsingMember\DemoUsingMember.csproj", "{4AC021F3-EFCE-497D-A48B-7E2D08C2B481}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B5258DD3-8C4E-4643-9DF1-95762BBEC3A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5258DD3-8C4E-4643-9DF1-95762BBEC3A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5258DD3-8C4E-4643-9DF1-95762BBEC3A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AC021F3-EFCE-497D-A48B-7E2D08C2B481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AC021F3-EFCE-497D-A48B-7E2D08C2B481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AC021F3-EFCE-497D-A48B-7E2D08C2B481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AC021F3-EFCE-497D-A48B-7E2D08C2B481}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
