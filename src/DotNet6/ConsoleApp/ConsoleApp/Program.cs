@@ -6,7 +6,7 @@ namespace ConsoleApp
     {
         private static void Main()
         {
-            var kbInput = new KeyboardInput(ConsoleKey.Escape);
+            var kbInput = new KeyboardInputHandler(ConsoleKey.Escape);
             kbInput.OnKeyDown += OnKeyDown;
             kbInput.OnKeyUp += OnKeyUp;
 
@@ -76,12 +76,12 @@ namespace ConsoleApp
         //}
     }
 
-    internal class KeyboardInput
+    internal class KeyboardInputHandler
     {
         private readonly short _exitKey;
         private readonly uint[] _keyStates = new uint[short.MaxValue];
 
-        public KeyboardInput(ConsoleKey exitKey)
+        public KeyboardInputHandler(ConsoleKey exitKey)
         {
             _exitKey = (short)exitKey;
 
