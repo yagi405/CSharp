@@ -23,12 +23,50 @@ p {
     margin: 0;
 }
 
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+span.required-mark {
+    margin-left: 0.5rem;
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    vertical-align: baseline;
+    padding-right: 0.6em;
+    padding-left: 0.6em;
+    border-radius: 10rem;
+    color: white;
+    background-color: #bd2130;
+}
+
+.login-screen {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: var(--color-primary);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
 .button {
     background-color: #00d1b2;
     border-color: transparent;
     border-radius: 0.375em;
     color: #fff;
     padding: 0.5rem;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.5;
 
     &:hover {
         background-color: #00c4a7;
@@ -53,6 +91,7 @@ p {
     border-color: #dbdbdb;
     border-radius: 0.375em;
     padding: 0.5rem;
+    min-width: 90px;
 }
 
 .input:hover, .textarea:hover {
@@ -155,6 +194,10 @@ header.header, footer.footer {
     justify-content: flex-end;
 }
 
+.text-right {
+    text-align: right;
+}
+
 .navbar-item {
     padding: 0.5rem 0.75rem;
 }
@@ -165,7 +208,7 @@ a.navbar-item {
     }
 }
 
-.rows, .content {
+.rows, .cols {
     display: flex;
 }
 
@@ -176,6 +219,10 @@ a.navbar-item {
 
 .rows {
     flex-direction: column;
+}
+
+.form-component {
+    margin-bottom: 1rem;
 }
 
 .grow {

@@ -24,7 +24,8 @@ namespace SimpleChatApp.Models.Services.Imp
             return chatLogs
                 .Select(x => new ChatIndexViewModel.Detail(
                 x.PostAt,
-                x.Message
+                x.Message,
+                x.UserId
                 ))
                 .ToList();
         }
