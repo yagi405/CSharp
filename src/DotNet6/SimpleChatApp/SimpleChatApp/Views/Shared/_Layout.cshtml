@@ -4,10 +4,16 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
-    <div>
-        @RenderBody()
+    <partial name="_HeaderPartial" />
+    <div class="main">
+        <div class="container box">
+            @RenderBody()
+        </div>
     </div>
+    <partial name="_FooterPartial" />
+    <script type="text/javascript" src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>
