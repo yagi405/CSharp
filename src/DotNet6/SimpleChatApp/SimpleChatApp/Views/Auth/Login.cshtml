@@ -4,14 +4,13 @@
     ViewData["Title"] = "Login";
 }
 
-<form asp-action="Index" class="rows login-screen">
+<form asp-action="Login" class="rows login-screen">
     <h1>Login</h1>
     <hr />
     <div class="rows form-component">
-        <div class="cols">
-            <label asp-for="UserId"></label>
-        </div>
+        <label asp-for="UserId"></label>
         <input asp-for="UserId" class="input" />
+        <span asp-validation-for="UserId"></span>
     </div>
     <div class="form-component text-right">
         <input class="button" type="submit" value="Login" />
