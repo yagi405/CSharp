@@ -1,14 +1,17 @@
 ﻿@model LoginIndexViewModel
 
 @{
+    Layout = "_LoginLayout";
     ViewData["Title"] = "Login";
 }
 
-<form asp-action="Login" class="rows login-screen">
-    <h1>Login</h1>
+<form asp-action="Login" class="rows login-form">
+    <h1>Simple Chat App</h1>
     <hr />
     <div class="rows form-component">
-        <label asp-for="UserId"></label>
+        <div class="cols">
+            <label asp-for="UserId"></label><span class="required-mark">*</span>
+        </div>
         <input asp-for="UserId" class="input" />
         <span asp-validation-for="UserId"></span>
     </div>
