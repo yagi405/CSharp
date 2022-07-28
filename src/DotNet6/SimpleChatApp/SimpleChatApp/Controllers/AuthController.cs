@@ -24,6 +24,8 @@ namespace SimpleChatApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginIndexViewModel model)
         {
+            throw new NotImplementedException();
+
             if (!ModelState.IsValid)
             {
                 return View();

@@ -35,6 +35,13 @@ namespace SimpleChatApp
 
             var app = builder.Build();
 
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseExceptionHandler("/Error/Index/{0}");
+            }
+
+            app.UseStatusCodePagesWithReExecute("/Error/Index/{0}");
+
             app.UseStaticFiles();
 
             app.UseRouting();
